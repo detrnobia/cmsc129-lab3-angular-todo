@@ -38,7 +38,7 @@
 <div class="modal-overlay" *ngIf="editingTask" (click)="cancelEdit()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <app-edit-task 
-      [task]="editingTask"
+      [editedTask]="editingTask"
       (onSaveTask)="updateTask($event)"
       (onCancelEdit)="cancelEdit()">
     </app-edit-task>

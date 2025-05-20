@@ -36,6 +36,7 @@ export class TaskService {
   }
 
   updateTask(task: Task): Observable<Task> {
-    return this.http.put<Task>(`${this.apiUrl}/${task.id}`, task);
+    const url = `${this.apiUrl}/${task.id}`;
+    return this.http.put<Task>(url, task); // Send the updated task to the backend
   }
 }

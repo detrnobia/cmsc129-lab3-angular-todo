@@ -11,14 +11,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./edit-task.component.css']
 })
 export class EditTaskComponent {
-  @Input() task!: Task; 
+  @Input() editedTask!: Task; 
   @Output() onSaveTask: EventEmitter<Task> = new EventEmitter();
   @Output() onCancelEdit: EventEmitter<void> = new EventEmitter();
 
-  editedTask!: Task;
-
   ngOnInit(): void {
-    this.editedTask = JSON.parse(JSON.stringify(this.task));        // deep copy to avoid modifying original task
+    this.editedTask = JSON.parse(JSON.stringify(this.editedTask));        // deep copy to avoid modifying original task
   
     if (this.editedTask.day) {
       const [datePart, timePart] = this.editedTask.day.split(' ');
@@ -28,8 +26,8 @@ export class EditTaskComponent {
   }  
 
   saveTask() {
-    this.editedTask.day = `${this.editedTask.date} ${this.editedTask.time}`;
-    this.onSaveTask.emit(this.editedTask); 
+    this.editedTask.day = `${this.editedTask.date} ${this.editedTask.time}`.trim(); // Combine date and time
+    this.onSaveTask.emit(this.editedTask); // Emit the updated task
   }
 
   cancelEdit() {
