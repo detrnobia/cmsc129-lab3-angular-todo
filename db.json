@@ -9,7 +9,7 @@
       "time": "10:30",
       "dateAdded": "2025-05-20T04:05:54.209Z",
       "reminder": false,
-      "done": true
+      "done": false
     },
     {
       "id": "ab85",
@@ -41,6 +41,17 @@
       "date": "2025-05-23",
       "time": "06:19",
       "dateAdded": "2025-05-20T16:17:19.591Z",
+      "reminder": false,
+      "done": true
+    },
+    {
+      "id": "a1a1",
+      "text": "DUE DATE",
+      "day": "2025-05-20 22:00",
+      "priority": "low",
+      "date": "2025-05-20",
+      "time": "22:00",
+      "dateAdded": "2025-05-20T17:21:30.118Z",
       "reminder": false,
       "done": false
     }

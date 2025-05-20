@@ -75,3 +75,38 @@ label[for="sort"] {
   color: #ffcc00; /* Yellow color for Undo button */
   font-weight: bold;
 }
+
+/* Align search bar and sort dropdown on the same level */
+.search-sort-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.search-bar input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.sort-dropdown {
+  display: flex;
+  align-items: center;
+  margin-left: 20px; /* Space between search bar and sort dropdown */
+}
+
+.sort-dropdown label {
+  margin-right: 10px;
+  font-weight: bold;
+  white-space: nowrap; /* Prevent label from wrapping */
+}
+
+.sort-dropdown select {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}

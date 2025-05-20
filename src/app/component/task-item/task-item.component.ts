@@ -36,4 +36,10 @@ export class TasksItemComponent implements OnInit{
   editTask(task: Task) {
     this.onEditTask.emit(task); 
   }
+
+  isOverdue(task: Task): boolean {
+    const now = new Date();
+    const dueDate = new Date(task.day || '');
+    return !task.done && dueDate < now;
+  }
 }

@@ -2,25 +2,36 @@
   <!-- Add Task -->
 <app-add-task *ngIf="showAddTask" (onAddTask)="addTask($event)"></app-add-task>
 
-<!-- Sort Dropdown -->
-<label for="sort">Sort By:</label>
-<select id="sort" [(ngModel)]="sortBy" (change)="sortTasks()">
-  <option value="dateAddedAsc">Date Added (Oldest First)</option>
-  <option value="dateAddedDesc">Date Added (Newest First)</option>
-  <option value="dueDateAsc">Due Date (Earliest First)</option>
-  <option value="dueDateDesc">Due Date (Latest First)</option>
-  <option value="priorityAsc">Priority (Low to High)</option>
-  <option value="priorityDesc">Priority (High to Low)</option>
-</select>
-
+<div class="search-sort-container">
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search tasks..."
+      [(ngModel)]="searchText"
+      (input)="searchTasks()"
+    />
+  </div>
+  <div class="sort-dropdown">
+    <label for="sort">Sort By:</label>
+    <select id="sort" [(ngModel)]="sortBy" (change)="sortTasks()">
+      <option value="dateAddedAsc">Date Added (Oldest First)</option>
+      <option value="dateAddedDesc">Date Added (Newest First)</option>
+      <option value="dueDateAsc">Due Date (Earliest First)</option>
+      <option value="dueDateDesc">Due Date (Latest First)</option>
+      <option value="priorityAsc">Priority (Low to High)</option>
+      <option value="priorityDesc">Priority (High to Low)</option>
+    </select>
+  </div>
+</div>
 <!-- Tasks List -->
 <app-task-item                              
-  *ngFor="let task of tasks"               
+  *ngFor="let task of filteredTasks"               
   [task]="task"                            
   [priority]="task.priority"
   (onDeleteTask)="confirmDeleteTask(task)"
   (onToggleDone)="toggleDone(task)"
-  (onEditTask)="editTask(task)">
+  (onEditTask)="editTask(task)"
+  (onDeleteTask)="confirmDeleteTask(task)">
 </app-task-item>
 
 <!-- Edit Task Modal -->

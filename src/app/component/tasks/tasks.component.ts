@@ -44,6 +44,7 @@ export class TasksComponent implements OnInit {
     this.taskService.getTasks().subscribe((tasks: Task[]) => {
       this.tasks = tasks;
       this.sortTasks();
+      this.applyFilters(); // Apply filters after fetching tasks
     });
   }
 
@@ -111,7 +112,7 @@ export class TasksComponent implements OnInit {
   }
 
   sortTasks(): void {
-    this.tasks.sort((a, b) => {
+    this.filteredTasks.sort((a, b) => {
       if (a.done !== b.done) {
         return a.done ? 1 : -1; // Completed tasks go to the bottom
       }
@@ -146,5 +147,28 @@ export class TasksComponent implements OnInit {
 
   priorityValue(priority: 'high' | 'mid' | 'low'): number {
     return priority === 'high' ? 3 : priority === 'mid' ? 2 : 1;
+  }
+
+  
+  searchText: string = ''; // Add this property to hold the search text
+  filteredTasks: Task[] = [];
+
+  searchTasks(): void {
+    this.applyFilters();
+  }
+
+  applyFilters(): void {
+    const lowerSearchText = this.searchText.toLowerCase();
+    this.filteredTasks = this.tasks.filter((task) =>
+      task.text.toLowerCase().includes(lowerSearchText)
+    );
+    this.sortTasks(); // Ensure sorting is applied after searching
+  }
+
+  isOverdue(task: Task): boolean {
+    if (!task.day) return false; // If no due date, it's not overdue
+    const dueDate = new Date(task.day);
+    const today = new Date();
+    return dueDate < today && !task.done; // Overdue if due date is in the past and task is not done
   }
 }
