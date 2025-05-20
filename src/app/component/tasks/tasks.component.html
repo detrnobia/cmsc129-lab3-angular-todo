@@ -44,4 +44,15 @@
     </app-edit-task>
   </div>
 </div>
+<!-- Confirmation Dialog Modal -->
+<div class="modal-overlay" *ngIf="deletingTask" (click)="cancelDelete()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>Confirmation</h2>
+    <p>Are you sure you want to delete the task: "{{ deletingTask?.text }}"?</p>
+    <div class="actions">
+      <button class="btn confirm-btn" (click)="deleteTask(deletingTask)">Confirm</button>
+      <button class="btn cancel-btn" (click)="cancelDelete()">Cancel</button>
+    </div>
+  </div>
+</div>
 </div>

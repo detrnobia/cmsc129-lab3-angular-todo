@@ -10,6 +10,7 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+
 @Component({
   selector: 'app-tasks',
   standalone: true,
@@ -29,6 +30,7 @@ export class TasksComponent implements OnInit {
   sortBy: string = 'dateAddedAsc';
   showAddTask: boolean = false;
   subscription: Subscription;
+  deletingTask: Task | null = null;
 
   constructor(private taskService: TaskService, private uiService: UiService, private snackBar: MatSnackBar) {
     this.subscription = this.uiService
@@ -67,32 +69,32 @@ export class TasksComponent implements OnInit {
   }
 
   confirmDeleteTask(task: Task): void {
-    if (confirm(`Are you sure you want to delete the task: "${task.text}"?`)) {
-      this.deleteTask(task);
-    }
+    this.deletingTask = task;
+  }
+
+  cancelDelete(): void {
+    this.deletingTask = null;
   }
 
   deleteTask(task: Task): void {
-    const deletedTask = { ...task }; // Keep a copy of the deleted task
-    this.tasks = this.tasks.filter((t) => t.id !== task.id);
+    this.taskService.deleteTask(task).subscribe(() => {
+      this.tasks = this.tasks.filter((t) => t.id !== task.id); // Remove the task from the list
+      this.deletingTask = null; // Close the modal
 
-    // Show the toast notification
-    const snackBarRef = this.snackBar.open('Task Deleted', 'Undo', {
-      duration: 5000, // Toast duration in milliseconds
-      panelClass: ['custom-snackbar'],
-    });
+      // Show a toast notification with an undo option
+      const snackBarRef = this.snackBar.open(
+        `Task "${task.text}" deleted.`,
+        'Undo',
+        { duration: 5000 }
+      );
 
-    // Handle Undo action
-    snackBarRef.onAction().subscribe(() => {
-      this.tasks.push(deletedTask); // Re-add the deleted task
-      this.sortTasks(); // Re-sort the tasks
-    });
-
-    // If Undo is not clicked, delete the task from the server
-    snackBarRef.afterDismissed().subscribe((info: { dismissedByAction: boolean }) => {
-      if (!info.dismissedByAction) {
-        this.taskService.deleteTask(task).subscribe();
-      }
+      snackBarRef.onAction().subscribe(() => {
+        // Undo the deletion
+        this.taskService.addTask(task).subscribe((restoredTask: Task) => {
+          this.tasks.push(restoredTask); // Add the task back to the list
+          this.sortTasks(); // Re-sort the tasks
+        });
+      });
     });
   }
 

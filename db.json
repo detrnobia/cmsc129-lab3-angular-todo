@@ -23,17 +23,6 @@
       "done": false
     },
     {
-      "id": "7dbb",
-      "text": "NEW NAME",
-      "day": "2025-05-22 12:14",
-      "priority": "mid",
-      "date": "2025-05-22",
-      "time": "12:14",
-      "dateAdded": "2025-05-20T16:11:21.220Z",
-      "reminder": false,
-      "done": false
-    },
-    {
       "id": "f237",
       "text": "stats LE",
       "day": "2025-05-23 06:19",
@@ -46,12 +35,23 @@
     },
     {
       "id": "a1a1",
-      "text": "DUE DATE",
+      "text": "DUE DATE NEWWWW",
       "day": "2025-05-20 22:00",
       "priority": "low",
       "date": "2025-05-20",
       "time": "22:00",
       "dateAdded": "2025-05-20T17:21:30.118Z",
+      "reminder": false,
+      "done": false
+    },
+    {
+      "id": "7dbb",
+      "text": "NEW NAME",
+      "day": "2025-05-22 12:14",
+      "priority": "mid",
+      "date": "2025-05-22",
+      "time": "12:14",
+      "dateAdded": "2025-05-20T16:11:21.220Z",
       "reminder": false,
       "done": false
     }
