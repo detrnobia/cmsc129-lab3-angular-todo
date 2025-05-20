@@ -4,6 +4,7 @@
     <h3>{{ task.text }}</h3>
     
     <span *ngIf="isOverdue(task)" class="badge overdue">Overdue</span>
+    <span *ngIf="isUpcoming(task)" class="badge upcoming">Upcoming</span>
     <p>Due Date: {{ task.day | date:'EEEE yyyy-MM-dd hh:mm a' }}</p>
     <p>Created On: {{ task.dateAdded | date:'EEEE yyyy-MM-dd hh:mm a' }}</p>
 

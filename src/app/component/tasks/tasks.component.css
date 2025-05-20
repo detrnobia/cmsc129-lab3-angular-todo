@@ -102,6 +102,7 @@ label[for="sort"] {
   margin-right: 10px;
   font-weight: bold;
   white-space: nowrap; /* Prevent label from wrapping */
+  font-size: 16px;
 }
 
 .sort-dropdown select {

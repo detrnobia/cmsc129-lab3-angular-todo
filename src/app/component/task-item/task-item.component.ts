@@ -42,4 +42,13 @@ export class TasksItemComponent implements OnInit{
     const dueDate = new Date(task.day || '');
     return !task.done && dueDate < now;
   }
+
+  isUpcoming(task: Task): boolean {
+    if (!task.day) return false; // If no due date, it's not upcoming
+    const dueDate = new Date(task.day);
+    const today = new Date();
+    const twoDaysFromNow = new Date();
+    twoDaysFromNow.setDate(today.getDate() + 2);
+    return dueDate > today && dueDate <= twoDaysFromNow && !task.done; // Upcoming if due date is within the next 2 days and not done
+  }
 }
