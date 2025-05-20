@@ -1,50 +1,41 @@
 <div class="add-task-container">
-  <form *ngIf="showAddTask" class="task" (ngSubmit)="onSubmit()">
-    <div class="form-control">
-      <label for="text">Task</label>
-      <input
-        type="text"
-        name="text"
-        [(ngModel)]="text"
-        id="text"
-        placeholder="Add Task"
-        required
-      />
-    </div>
+  <h3>Add Task</h3>
+  <form (ngSubmit)="onSubmit()">
+    <label for="task">Task</label>
+    <input
+      id="task"
+      type="text"
+      [(ngModel)]="text"
+      name="text"
+      placeholder="Add Task"
+      required
+    />
 
-    <div class="form-control">
-      <label for="date">Date</label>
-      <input
-        type="date"
-        name="date"
-        [(ngModel)]="date"
-        id="date"
-        required
-      />
-    </div>
+    <label for="date">Date</label>
+    <input
+      id="date"
+      type="date"
+      [(ngModel)]="date"
+      name="date"
+      required
+    />
 
-    <div class="form-control">
-      <label for="time">Time</label>
-      <input
-        type="time"
-        name="time"
-        [(ngModel)]="time"
-        id="time"
-        required
-      />
-    </div>
+    <label for="time">Time</label>
+    <input
+      id="time"
+      type="time"
+      [(ngModel)]="time"
+      name="time"
+      required
+    />
 
-    <div class="form-control priority-select">
-      <label for="priority" class="priority-label">Priority</label>
-      <select name="priority" [(ngModel)]="priority" id="priority" required>
-        <option value="high">High</option>
-        <option value="mid">Mid</option>
-        <option value="low">Low</option>
-      </select>
-    </div>
+    <label for="priority">Priority</label>
+    <select id="priority" [(ngModel)]="priority" name="priority">
+      <option value="low">Low</option>
+      <option value="mid">Medium</option>
+      <option value="high">High</option>
+    </select>
 
-    <button type="submit" [disabled]="!text || !date || !time || !priority">
-      Save Task
-    </button>
+    <button type="submit">Save Task</button>
   </form>
 </div>

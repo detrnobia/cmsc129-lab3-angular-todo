@@ -1,5 +1,8 @@
-<app-add-task (onAddTask)="addTask($event)"></app-add-task>   <!-- child component; triggers addTask when child emits onAddTask -->
+<div class="tasks-container">
+  <!-- Add Task -->
+<app-add-task *ngIf="showAddTask" (onAddTask)="addTask($event)"></app-add-task>
 
+<!-- Sort Dropdown -->
 <label for="sort">Sort By:</label>
 <select id="sort" [(ngModel)]="sortBy" (change)="sortTasks()">
   <option value="dateAddedAsc">Date Added (Oldest First)</option>
@@ -10,6 +13,7 @@
   <option value="priorityDesc">Priority (High to Low)</option>
 </select>
 
+<!-- Tasks List -->
 <app-task-item                              
   *ngFor="let task of tasks"               
   [task]="task"                            
@@ -19,6 +23,7 @@
   (onEditTask)="editTask(task)">
 </app-task-item>
 
+<!-- Edit Task Modal -->
 <div class="modal-overlay" *ngIf="editingTask" (click)="cancelEdit()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <app-edit-task 
@@ -27,4 +32,5 @@
       (onCancelEdit)="cancelEdit()">
     </app-edit-task>
   </div>
+</div>
 </div>

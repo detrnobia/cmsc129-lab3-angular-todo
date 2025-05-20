@@ -22,11 +22,7 @@ export class AddTaskComponent implements OnInit {
   showAddTask?: boolean;
   subscription: Subscription;
 
-  constructor(private uiService: UiService) { //for form visibility control (inject UiService)
-    this.subscription = this.uiService
-       .onToggle()
-       .subscribe((value: boolean) => (this.showAddTask = value));
-  }
+  constructor(){}
 
   ngOnInit(): void {}
 
@@ -46,8 +42,9 @@ export class AddTaskComponent implements OnInit {
       priority: this.priority, 
       date: this.date,
       time: this.time,
-      dateAdded: this.dateAdded,
-      reminder: false // Default value for reminder
+      dateAdded: new Date().toISOString(),
+      reminder: false, // Default value for reminder
+      done: false, // Default value for done
     };
 
     this.onAddTask.emit(newTask);  //clears the form

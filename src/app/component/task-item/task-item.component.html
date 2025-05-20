@@ -1,5 +1,5 @@
-<div class="task" [ngClass]="task.priority">
-  <input type="checkbox" [(ngModel)]="task.done" (change)="toggleDone(task)" />
+<div class="task" [ngClass]="{ done: task.done }" [class]="task.priority">
+  <input type="checkbox" [(ngModel)]="task.done" (change)="onToggleDone.emit(task)" />
   <div class="task-details">
     <h3>{{ task.text }}</h3>
     <p>Due Date: {{ task.day | date:'EEEE yyyy-MM-dd hh:mm a' }}</p>

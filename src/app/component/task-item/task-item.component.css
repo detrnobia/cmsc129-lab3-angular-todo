@@ -62,3 +62,8 @@
 .low {
   border-left: 5px solid green;
 }
+
+.task.done h3, .task.done p {
+  text-decoration: line-through;
+  color: #999;
+}
