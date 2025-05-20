@@ -1,0 +1,64 @@
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.task input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 10px;
+}
+
+.task h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.task p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.edit-btn,
+.delete-btn {
+  cursor: pointer;
+  font-size: 18px;
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  color: #0056b3;
+}
+
+.high {
+  border-left: 5px solid red;
+}
+
+.mid {
+  border-left: 5px solid blue;
+}
+
+.low {
+  border-left: 5px solid green;
+}

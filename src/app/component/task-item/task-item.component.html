@@ -1,0 +1,11 @@
+<div class="task" [ngClass]="task.priority">
+  <input type="checkbox" [(ngModel)]="task.done" (change)="toggleDone(task)" />
+  <div class="task-details">
+    <h3>{{ task.text }}</h3>
+    <p>Due Date: {{ task.day | date:'EEEE yyyy-MM-dd hh:mm a' }}</p>
+    <p>Created On: {{ task.dateAdded | date:'EEEE yyyy-MM-dd hh:mm a' }}</p>
+
+  </div>
+  <fa-icon class="edit-btn" (click)="editTask(task)" [icon]="faPencilAlt"></fa-icon>
+  <fa-icon class="delete-btn" (click)="onDelete(task)" [ngStyle]="{ color: 'red' }" [icon]="faTimes"></fa-icon>
+</div>

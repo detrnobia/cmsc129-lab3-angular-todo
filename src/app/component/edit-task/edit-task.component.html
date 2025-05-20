@@ -1,0 +1,49 @@
+<form class="edit-form" (ngSubmit)="saveTask()">
+    <div class="form-control">
+      <label for="text">Task</label>
+      <input
+        type="text"
+        name="text"
+        [(ngModel)]="editedTask.text"
+        id="text"
+        placeholder="Edit Task"
+        required
+      />
+    </div>
+    
+    <div class="form-control">
+      <label for="date">Date</label>
+      <input
+        type="date"
+        name="date"
+        [(ngModel)]="editedTask.date"
+        id="date"
+        required
+      />
+    </div>
+  
+    <div class="form-control">
+      <label for="time">Time</label>
+      <input
+        type="time"
+        name="time"
+        [(ngModel)]="editedTask.time"
+        id="time"
+        required
+      />
+    </div>
+  
+    <div class="form-control">
+      <label for="priority">Priority</label>
+      <select name="priority" [(ngModel)]="editedTask.priority" id="priority" required>
+        <option value="high">High</option>
+        <option value="mid">Mid</option>
+        <option value="low">Low</option>
+      </select>
+    </div>
+  
+    <div class="actions">
+      <input type="submit" value="Save Task" class="btn btn-block" />
+      <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+    </div>
+  </form>

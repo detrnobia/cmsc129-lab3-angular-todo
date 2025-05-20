@@ -1,0 +1,84 @@
+.add-task-container {
+  background: #f8f9fa; /* Light background for the form */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
+  margin-bottom: 20px;
+}
+
+.add-task-container h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.task {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Add spacing between form elements */
+}
+
+.task input,
+.task select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.task input:focus,
+.task select:focus {
+  border-color: #007bff; /* Highlight border on focus */
+  outline: none;
+}
+
+.task button {
+  background-color: #28a745; /* Green for the "Add" button */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.task button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.task button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.priority-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.priority-select {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.priority-select select {
+  flex: 1;
+}
+
+.task.high {
+  border-left-color: red;
+}
+
+.task.mid {
+  border-left-color: blue;
+}
+
+.task.low {
+  border-left-color: green;
+}

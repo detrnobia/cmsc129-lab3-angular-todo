@@ -1,0 +1,50 @@
+<div class="add-task-container">
+  <form *ngIf="showAddTask" class="task" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+      <label for="text">Task</label>
+      <input
+        type="text"
+        name="text"
+        [(ngModel)]="text"
+        id="text"
+        placeholder="Add Task"
+        required
+      />
+    </div>
+
+    <div class="form-control">
+      <label for="date">Date</label>
+      <input
+        type="date"
+        name="date"
+        [(ngModel)]="date"
+        id="date"
+        required
+      />
+    </div>
+
+    <div class="form-control">
+      <label for="time">Time</label>
+      <input
+        type="time"
+        name="time"
+        [(ngModel)]="time"
+        id="time"
+        required
+      />
+    </div>
+
+    <div class="form-control priority-select">
+      <label for="priority" class="priority-label">Priority</label>
+      <select name="priority" [(ngModel)]="priority" id="priority" required>
+        <option value="high">High</option>
+        <option value="mid">Mid</option>
+        <option value="low">Low</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="!text || !date || !time || !priority">
+      Save Task
+    </button>
+  </form>
+</div>

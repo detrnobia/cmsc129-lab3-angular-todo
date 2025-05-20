@@ -1,0 +1,57 @@
+.edit-task-container {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    }
+  
+  button:first-child {
+    background-color: #28a745;
+    color: white;
+  }
+
+  button:first-child:hover {
+    background-color: #218838;
+  }
+  
+  button:last-child {
+    background-color: #dc3545;
+    color: white;
+  }  
+
+  button:last-child:hover {
+    background-color: #c82333;
+  }
