@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { TasksItemComponent } from '../task-item/task-item.component';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tasks',
@@ -29,7 +30,7 @@ export class TasksComponent implements OnInit {
   showAddTask: boolean = false;
   subscription: Subscription;
 
-  constructor(private taskService: TaskService, private uiService: UiService) {
+  constructor(private taskService: TaskService, private uiService: UiService, private snackBar: MatSnackBar) {
     this.subscription = this.uiService
       .onToggle()
       .subscribe((value: boolean) => (this.showAddTask = value));
@@ -71,8 +72,26 @@ export class TasksComponent implements OnInit {
   }
 
   deleteTask(task: Task): void {
-    this.taskService.deleteTask(task).subscribe(() => {
-      this.tasks = this.tasks.filter((t) => t.id !== task.id);
+    const deletedTask = { ...task }; // Keep a copy of the deleted task
+    this.tasks = this.tasks.filter((t) => t.id !== task.id);
+
+    // Show the toast notification
+    const snackBarRef = this.snackBar.open('Task Deleted', 'Undo', {
+      duration: 5000, // Toast duration in milliseconds
+      panelClass: ['custom-snackbar'],
+    });
+
+    // Handle Undo action
+    snackBarRef.onAction().subscribe(() => {
+      this.tasks.push(deletedTask); // Re-add the deleted task
+      this.sortTasks(); // Re-sort the tasks
+    });
+
+    // If Undo is not clicked, delete the task from the server
+    snackBarRef.afterDismissed().subscribe((info: { dismissedByAction: boolean }) => {
+      if (!info.dismissedByAction) {
+        this.taskService.deleteTask(task).subscribe();
+      }
     });
   }
 

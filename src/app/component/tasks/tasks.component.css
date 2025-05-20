@@ -62,3 +62,16 @@ label[for="sort"] {
     transform: scale(1);
   }
 }
+
+/* Toast Notification */
+.mat-snack-bar-container {
+  background-color: #333; /* Dark background for toast */
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.mat-button {
+  color: #ffcc00; /* Yellow color for Undo button */
+  font-weight: bold;
+}
